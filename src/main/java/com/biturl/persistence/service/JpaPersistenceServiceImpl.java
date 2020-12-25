@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -18,14 +19,15 @@ public class JpaPersistenceServiceImpl implements PersistenceService{
 	
 	@Override
 	@Transactional
-	public <T> T findById(Class<T> clazz, Long id){
+	public <T> T findById(Class<T> clazz, Object id){
 		return entityManager.find(clazz, id);
 	}
 	
 	@Override
 	@Transactional
 	public <T> List<T> findAll(Class<T> clazz){
-		
+		Query query = entityManager.createNativeQuery("SELECT * FROM clazz");
+		return query.getResultList();
 	}
 	
 	@Override
@@ -101,10 +103,12 @@ public class JpaPersistenceServiceImpl implements PersistenceService{
 	}
 	
 	public <T> List<T> executeQuery(String query) {
-		
+		Query q = entityManager.createNativeQuery(query);
+		return q.getResultList();
 	}
 	
 	public void flushAndClear() {
-		
+		entityManager.flush();
+		entityManager.clear();
 	}
 }
