@@ -8,6 +8,7 @@ public interface PersistenceService {
 	<T> T findById(Class<T> clazz, Object id);
 	<T> List<T> findAll(Class<T> clazz);
 	
+	<T> T save(T o);
 	<T> void save(T... o);
 	<T> void save(Collection<T> c);
 	

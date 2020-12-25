@@ -1,6 +1,5 @@
 package com.biturl.persistence.service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,6 +27,18 @@ public class JpaPersistenceServiceImpl implements PersistenceService{
 	public <T> List<T> findAll(Class<T> clazz){
 		Query query = entityManager.createNativeQuery("SELECT * FROM clazz");
 		return query.getResultList();
+	}
+	
+	@Override
+	@Transactional
+	public <T> T save(final T entity) {
+		try {
+			entityManager.persist(entity);
+			entityManager.flush();
+			return entity;
+		} catch(Exception e) {
+			throw e;
+		}
 	}
 	
 	@Override

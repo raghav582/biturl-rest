@@ -1,6 +1,9 @@
 package com.biturl.service;
 
+import com.biturl.model.UrlModel;
+
 public interface UrlService {
 
-	public String addUrl(String url);
+	public String addUrl(UrlModel model);
+	
 }
