@@ -7,7 +7,6 @@ public class UrlAdaptor {
 
 	public static UrlEntity toEntity(UrlModel model) {
 		final UrlEntity entity = new UrlEntity();
-		entity.setId(model.getId().longValue());
 		entity.setUrl(model.getUrl());
 		
 		return entity;

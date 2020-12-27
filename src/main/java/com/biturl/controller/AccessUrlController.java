@@ -2,25 +2,24 @@ package com.biturl.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition;
 
-import com.biturl.model.UrlModel;
-import com.biturl.service.UrlService;
+import com.biturl.service.AccessUrlService;
 
 @Controller
-@RequestMapping("v1/url")
-public class UrlController {
+@RequestMapping("")
+public class AccessUrlController {
 
-	@Autowired private UrlService urlService;
+	@Autowired private AccessUrlService accessUrlService;
 	
-	@RequestMapping(value = "/add-url",
-			method = RequestMethod.POST)
+	@RequestMapping(value = "/{urlCode}",
+			method = RequestMethod.GET)
 	@ResponseBody
-	public String addUrl(@RequestBody final UrlModel model) {
-		return urlService.addUrl(model);
+	public String getUrl(@PathVariable("urlCode") final String urlCode) {
+		return accessUrlService.getUrl(urlCode);
 	}
 }
