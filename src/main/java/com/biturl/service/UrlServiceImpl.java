@@ -25,7 +25,8 @@ public class UrlServiceImpl implements UrlService{
 		String code = "";
 		Integer entityId = id.intValue();
 		for(int i=0; i<6; i++) {
-			code = UrlCode.URL_CODE[entityId%62] + code;
+			code = UrlCode.URL_CODE.get(entityId%62) + code;
+			entityId = entityId/62;
 		}
 		
 		return code;
