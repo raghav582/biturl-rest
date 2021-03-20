@@ -18,17 +18,7 @@ public class UrlServiceImpl implements UrlService{
 	public String addUrl(final UrlModel model) {
 		final UrlEntity entity = UrlAdaptor.toEntity(model);
 		Long id = persistenceService.save(entity).getId();
-		return idToCode(id);
+		return UrlCode.idToCode(id);
 	}
 	
-	public String idToCode(final Long id) {
-		String code = "";
-		Integer entityId = id.intValue();
-		for(int i=0; i<6; i++) {
-			code = UrlCode.URL_CODE.get(entityId%62) + code;
-			entityId = entityId/62;
-		}
-		
-		return code;
-	}
 }

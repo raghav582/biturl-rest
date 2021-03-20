@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.biturl.service.AccessUrlService;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("v1")
 public class AccessUrlController {
 
 	@Autowired private AccessUrlService accessUrlService;

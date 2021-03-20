@@ -8,12 +8,15 @@ import com.biturl.persistence.service.PersistenceService;
 import com.biturl.urlcode.UrlCode;
 
 @Service
-public class AccessUrlServiceImpl implements AccessUrlService{
+public class RedirectServiceImpl implements RedirectService{
 
 	@Autowired PersistenceService persistenceService;
 	
-	public String getUrl(String urlCode) {
-		Long entityId = UrlCode.codeToId(urlCode);
-		return persistenceService.findById(UrlEntity.class, entityId).getUrl();
+	@Override
+	public String getUrl(final String code) {
+		final Long id = UrlCode.codeToId(code);
+		final String url = persistenceService.findById(UrlEntity.class, id).getUrl();
+		
+		return url;
 	}
 }
