@@ -13,7 +13,7 @@ public class RedirectServiceImpl implements RedirectService{
 	@Autowired PersistenceService persistenceService;
 	
 	@Override
-	public String getUrl(final String code) {
+	public String getUrl(final String code) throws Exception{
 		final Long id = UrlCode.codeToId(code);
 		final String url = persistenceService.findById(UrlEntity.class, id).getUrl();
 		

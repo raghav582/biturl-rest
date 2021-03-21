@@ -1,5 +1,7 @@
 package com.biturl.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +18,17 @@ import com.biturl.service.UrlService;
 public class UrlController {
 
 	@Autowired private UrlService urlService;
+	private static final Logger LOGGER = LogManager.getLogger(UrlController.class);
 	
 	@RequestMapping(value = "/add-url",
 			method = RequestMethod.POST)
 	@ResponseBody
 	public String addUrl(@RequestBody final UrlModel model) {
-		return urlService.addUrl(model);
+		try{
+			return urlService.addUrl(model);
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
+			return "";
+		}
 	}
 }

@@ -13,7 +13,7 @@ public class UrlCode {
 											"U", "V", "W", "X", "Y", "Z",
 											"0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
 	
-	public static String idToCode(final Long id) {
+	public static String idToCode(final Long id) throws Exception{
 		String code = "";
 		Integer entityId = id.intValue();
 		for(int i=0; i<6; i++) {
@@ -24,10 +24,10 @@ public class UrlCode {
 		return code;
 	}
 	
-	public static Long codeToId(final String code) {
+	public static Long codeToId(final String code) throws Exception{
 		String id = "";
 		for(int i=0; i<6; i++) {
-			id = id + UrlCode.URL_CODE.indexOf(String.valueOf(code.charAt(i)));
+			id = id + UrlCode.URL_CODE.indexOf(String.valueOf(code.charAt(i))) * (int)Math.pow(62, (5-i));
 		}
 		
 		return Long.parseLong(id);

@@ -15,7 +15,7 @@ public class UrlServiceImpl implements UrlService{
 	@Autowired private PersistenceService persistenceService;
 	
 	@Override
-	public String addUrl(final UrlModel model) {
+	public String addUrl(final UrlModel model) throws Exception{
 		final UrlEntity entity = UrlAdaptor.toEntity(model);
 		Long id = persistenceService.save(entity).getId();
 		return UrlCode.idToCode(id);

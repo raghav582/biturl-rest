@@ -4,6 +4,6 @@ import com.biturl.model.UrlModel;
 
 public interface UrlService {
 
-	public String addUrl(UrlModel model);
+	public String addUrl(UrlModel model) throws Exception;
 	
 }
